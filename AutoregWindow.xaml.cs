@@ -23,10 +23,7 @@ namespace LessonDB
         {
             InitializeComponent();
         }
-        string login = TextBoxLogin.Text.Trim();
-        string pass = TextBoxPassword.Password.Trim();
-        string email = TextBoxEmail.Text.ToLower().Trim();
-
+        
         private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
 

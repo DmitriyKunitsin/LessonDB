@@ -67,13 +67,20 @@ namespace LessonDB
                 TextBoxPassword_2.Background = Brushes.Transparent;
                 TextBoxEmail.ToolTip = "";
                 TextBoxEmail.Background = Brushes.Transparent;
-                MessageBox.Show("Ожидайте подтверждения регистрации администратором");
+                MessageBox.Show("Вы успешно прошли регистрацию");
                 User user = new User(login,email,pass);
                 
                 db.Users.Add(user);
                 db.SaveChanges();
             }
             }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AutoregWindow AutoWind  = new AutoregWindow();
+            AutoWind.Show();
+            this.Hide();
         }
+    }
     }
 
