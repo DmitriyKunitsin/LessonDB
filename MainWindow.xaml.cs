@@ -67,7 +67,7 @@ namespace LessonDB
                 TextBoxPassword_2.Background = Brushes.Transparent;
                 TextBoxEmail.ToolTip = "";
                 TextBoxEmail.Background = Brushes.Transparent;
-                MessageBox.Show("Вы успешно прошли регистрацию");
+                MessageBox.Show("Вы успешно прошли регистрацию, молодец");
                 User user = new User(login,email,pass);
                 
                 db.Users.Add(user);
