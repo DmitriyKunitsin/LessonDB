@@ -49,22 +49,22 @@ namespace LessonDB
                 TextBoxPassword.Background = Brushes.Transparent;
 
                 User authUser = null;
-                using (ApplicationContext db = new ApplicationContext()) 
+                using (ApplicationContext db = new ApplicationContext())
                 {
                     authUser = db.Users.Where(b => b.Login == login && b.Pass == pass).FirstOrDefault();
-                }
-                if (authUser != null)
-                {
-                    MessageBox.Show("Данные ввели правильно");
-                    WorksWindow openWorkWindow = new WorksWindow();
-                    openWorkWindow.Show();
-                    this.Close();
-                }
-                else 
-                {
-                    MessageBox.Show("Вы ввели не корректные данные");
-                }
 
+                    if (authUser != null)
+                    {
+                        MessageBox.Show("Данные ввели правильно");
+                        WorksWindow openWorkWindow = new WorksWindow();
+                        openWorkWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Вы ввели не корректные данные");
+                    }
+                }
             }
         }
 

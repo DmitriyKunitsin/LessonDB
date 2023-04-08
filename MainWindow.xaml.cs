@@ -30,43 +30,35 @@ namespace LessonDB
 
           
         }
-       private void Eror_Text_Box(string Text) 
+        private void Eror_Text_Box(Control Text)
         {
-                TextBoxLogin.ToolTip = "Запись должна состоять из более чем 4 символа";
-                TextBoxLogin.Background = Brushes.Red;
-                TextBoxPassword.ToolTip = "Запись должна состоять из более чем 4 символа";
-                TextBoxPassword.Background = Brushes.Red;
-            
-
-
-           if (Text.Length < 4 )
-            {
-                TextBoxLogin.Background = Brushes.Transparent;
-            }
-           
-           
+                Text.ToolTip = "Запись должна состоять из более чем 4 символа";
+                Text.Background = Brushes.Red;
         }
-       
+        private void Clear_Box(string Text, string pass , string email,Control Input) 
+        {
+            if (Text.Length > 4 || pass.Length > 4 || email.Length > 4)
+            {
+                Input.Background = Brushes.Transparent;
+                Input.ToolTip = "";
+            }
+        }
         private void Button_Reg_Click(object sender, RoutedEventArgs e)
         {
             string login = TextBoxLogin.Text.Trim();
             string pass = TextBoxPassword.Password.Trim();
             string pass_2 = TextBoxPassword_2.Password.Trim();
             string email = TextBoxEmail.Text.ToLower().Trim();
-            
-           
+            Clear_Box(login,pass,email,TextBoxLogin);
+            Clear_Box(login, pass, email, TextBoxPassword);
+            Clear_Box(login, pass, email, TextBoxEmail);
             if (login.Length < 4)
             {
-                Eror_Text_Box(login);
-               // TextBoxLogin.ToolTip = "Короткий логин"; // всплывающая подсказка
-                //TextBoxLogin.Background = Brushes.Red; // задний фон
-
+               Eror_Text_Box(TextBoxLogin);
             }
             else if (pass.Length < 4)
             {
-                Eror_Text_Box(pass);
-               // TextBoxPassword.Background = Brushes.Red; // задний фон
-               // TextBoxPassword.ToolTip = "Короткий пароль"; // всплывающая подсказка
+               Eror_Text_Box(TextBoxPassword);
             }
             else if (pass != pass_2)
             {
@@ -74,20 +66,10 @@ namespace LessonDB
             }
             else if (email.Length < 4 || !email.Contains("@") || !email.Contains("."))
             {
-                Eror_Text_Box(email);
-               // TextBoxEmail.Background = Brushes.Red; // задний фон
-               //TextBoxEmail.ToolTip = "Не корректная почта"; // всплывающая подсказка
+                Eror_Text_Box(TextBoxEmail);
             }
             else
             {
-                TextBoxLogin.ToolTip = "";
-                TextBoxLogin.Background = Brushes.Transparent; // Прозрачный задний фон
-                TextBoxPassword.ToolTip = "";
-                TextBoxPassword.Background = Brushes.Transparent;
-                TextBoxPassword_2.ToolTip = "";
-                TextBoxPassword_2.Background = Brushes.Transparent;
-                TextBoxEmail.ToolTip = "";
-                TextBoxEmail.Background = Brushes.Transparent;
                 MessageBox.Show("Вы успешно прошли регистрацию, молодец");
                 User user = new User(login,email,pass);
                 
