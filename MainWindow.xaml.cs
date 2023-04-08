@@ -75,7 +75,7 @@ namespace LessonDB
             }
             }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
             AutoregWindow AutoWind  = new AutoregWindow();
             AutoWind.Show();

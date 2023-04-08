@@ -14,10 +14,8 @@
             </Border.Effect>
             <StackPanel>
                <TextBlock Text="Регистрация" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0 0 0 10" />
-
                 <Grid Margin="0 10 0 20">
-                    <Button HorizontalAlignment="Right" Height="30" Width="100" Content="Вход" Click="Button_Click" />
-                    <Button HorizontalAlignment="Center" Height="30" Width="120" Content="Регистрация" Style="{StaticResource MaterialDesignFlatButton}" />
+                    <Button HorizontalAlignment="Right" Height="30" Width="150" Content="Есть аккаунт?" Click="Button_Auto_Click" />
                 </Grid>
                 <TextBox x:Name="TextBoxLogin" materialDesign:HintAssist.Hint="Введите логин *" materialDesign:HintAssist.Background="IndianRed" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <PasswordBox x:Name="TextBoxPassword" materialDesign:HintAssist.Hint="Введите пароль *" materialDesign:HintAssist.Background="IndianRed" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
