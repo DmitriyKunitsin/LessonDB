@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -25,28 +26,47 @@ namespace LessonDB
         {
             InitializeComponent();
             
-            db= new ApplicationContext();
+            db = new ApplicationContext();
 
           
         }
+       private void Eror_Text_Box(string Text) 
+        {
+                TextBoxLogin.ToolTip = "Запись должна состоять из более чем 4 символа";
+                TextBoxLogin.Background = Brushes.Red;
+                TextBoxPassword.ToolTip = "Запись должна состоять из более чем 4 символа";
+                TextBoxPassword.Background = Brushes.Red;
+            
 
+
+           if (Text.Length < 4 )
+            {
+                TextBoxLogin.Background = Brushes.Transparent;
+            }
+           
+           
+        }
+       
         private void Button_Reg_Click(object sender, RoutedEventArgs e)
         {
             string login = TextBoxLogin.Text.Trim();
             string pass = TextBoxPassword.Password.Trim();
             string pass_2 = TextBoxPassword_2.Password.Trim();
             string email = TextBoxEmail.Text.ToLower().Trim();
-
+            
+           
             if (login.Length < 4)
             {
-                TextBoxLogin.ToolTip = "Короткий логин"; // всплывающая подсказка
-                TextBoxLogin.Background = Brushes.Red; // задний фон
+                Eror_Text_Box(login);
+               // TextBoxLogin.ToolTip = "Короткий логин"; // всплывающая подсказка
+                //TextBoxLogin.Background = Brushes.Red; // задний фон
 
             }
             else if (pass.Length < 4)
             {
-                TextBoxPassword.Background = Brushes.Red; // задний фон
-                TextBoxPassword.ToolTip = "Короткий пароль"; // всплывающая подсказка
+                Eror_Text_Box(pass);
+               // TextBoxPassword.Background = Brushes.Red; // задний фон
+               // TextBoxPassword.ToolTip = "Короткий пароль"; // всплывающая подсказка
             }
             else if (pass != pass_2)
             {
@@ -54,8 +74,9 @@ namespace LessonDB
             }
             else if (email.Length < 4 || !email.Contains("@") || !email.Contains("."))
             {
-                TextBoxEmail.Background = Brushes.Red; // задний фон
-                TextBoxEmail.ToolTip = "Не корректная почта"; // всплывающая подсказка
+                Eror_Text_Box(email);
+               // TextBoxEmail.Background = Brushes.Red; // задний фон
+               //TextBoxEmail.ToolTip = "Не корректная почта"; // всплывающая подсказка
             }
             else
             {

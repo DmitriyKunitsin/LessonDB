@@ -11,6 +11,6 @@ namespace LessonDB
     {
         public DbSet<User> Users { get; set; }
 
-        public ApplicationContext() : base("DefaultConnection") { } // коммент
+        public ApplicationContext() : base("DefaultConnection") { } 
     }
 }
