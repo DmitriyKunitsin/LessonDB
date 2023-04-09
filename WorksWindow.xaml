@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LessonDB"
         mc:Ignorable="d"
-        Title="WorksWindow" Height="450" Width="800">
-    <Grid>
-        
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Пробная версия диплома" Height="450" Width="700" WindowStartupLocation="CenterScreen" >
+    <Grid Background="Azure">
+        <Border>
+            <StackPanel>
+                <TextBlock Text="Рабочее окно" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0 0 0 10" />
+                <DataGrid x:Name="WorkDataWindown" Height="363" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Width="331" HorizontalAlignment="Left"/>
+
+
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

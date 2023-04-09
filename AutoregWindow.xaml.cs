@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SQLite;
 
 namespace LessonDB
 {
@@ -22,32 +23,42 @@ namespace LessonDB
         public AutoregWindow()
         {
             InitializeComponent();
+            // connection object
+            SQLiteConnection connectionBase = new SQLiteConnection(@"C:\\Users\\kunic\\source\\repos\\LessonDB\\LessonDataBase.db");
+            // commond object
+            
         }
-        
+        private void Eror_Text_Box(Control Text)
+        {
+            Text.ToolTip = "Запись должна состоять из более чем 4 символа";
+            Text.Background = Brushes.Red;
+        }
+        private void Clear_Box(string Text, string pass,Control Input)
+        {
+            if (Text.Length > 4 || pass.Length > 4 )
+            {
+                Input.Background = Brushes.Transparent;
+                Input.ToolTip = "";
+            }
+        }
+
         private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
             string login = TextBoxLogin.Text.Trim();
             string pass = TextBoxPassword.Password.Trim();
-
+            Clear_Box(login, pass, TextBoxLogin);
+            Clear_Box(login,pass,TextBoxPassword);
 
             if (login.Length < 4)
             {
-                TextBoxLogin.ToolTip = "Короткий логин"; // всплывающая подсказка
-                TextBoxLogin.Background = Brushes.Red; // задний фон
-
+                Eror_Text_Box(TextBoxLogin);
             }
             else if (pass.Length < 4)
             {
-                TextBoxPassword.Background = Brushes.Red; // задний фон
-                TextBoxPassword.ToolTip = "Короткий пароль"; // всплывающая подсказка
+                Eror_Text_Box(TextBoxPassword);
             }
             else
             {
-                TextBoxLogin.ToolTip = "";
-                TextBoxLogin.Background = Brushes.Transparent; // Прозрачный задний фон
-                TextBoxPassword.ToolTip = "";
-                TextBoxPassword.Background = Brushes.Transparent;
-
                 User authUser = null;
                 using (ApplicationContext db = new ApplicationContext())
                 {
@@ -66,6 +77,7 @@ namespace LessonDB
                     }
                 }
             }
+           
         }
 
         private void Button_Back_Reg_Click(object sender, RoutedEventArgs e)
