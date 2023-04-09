@@ -73,6 +73,7 @@ namespace LessonDB
                     }
                     else
                     {
+                        Eror_Text_Box(TextBoxLogin);
                         MessageBox.Show("Вы ввели не корректные данные");
                     }
                 }
