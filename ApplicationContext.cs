@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 
 namespace LessonDB
 {
@@ -11,6 +12,14 @@ namespace LessonDB
     {
         public DbSet<User> Users { get; set; }
 
-        public ApplicationContext() : base("DefaultConnection") { } 
+        public ApplicationContext() : base("DefaultConnection")
+        {
+            Database.SetInitializer<ApplicationContext>(null);
+        }
+
+        
+    
+    
     }
+    
 }

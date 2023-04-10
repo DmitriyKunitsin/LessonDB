@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.Data.Entity;
 
 namespace LessonDB
 {
@@ -23,11 +24,8 @@ namespace LessonDB
         public AutoregWindow()
         {
             InitializeComponent();
-            // connection object
-            SQLiteConnection connectionBase = new SQLiteConnection(@"C:\\Users\\kunic\\source\\repos\\LessonDB\\LessonDataBase.db");
-            // commond object
-            
         }
+        
         private void Eror_Text_Box(Control Text)
         {
             Text.ToolTip = "Запись должна состоять из более чем 4 символа";
@@ -63,7 +61,7 @@ namespace LessonDB
                 using (ApplicationContext db = new ApplicationContext())
                 {
                     authUser = db.Users.Where(b => b.Login == login && b.Pass == pass).FirstOrDefault();
-
+                }
                     if (authUser != null)
                     {
                         MessageBox.Show("Данные ввели правильно");
@@ -76,7 +74,7 @@ namespace LessonDB
                         Eror_Text_Box(TextBoxLogin);
                         MessageBox.Show("Вы ввели не корректные данные");
                     }
-                }
+                
             }
            
         }
