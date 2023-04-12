@@ -5,7 +5,7 @@ using System.IO;
 
 namespace LessonDB
 {
-    public System.Windows.Forms.ListBox.ObjectCollection Items { get; }
+    //public System.Windows.Forms.ListBox.ObjectCollection Items { get; }
     /// <summary>
     /// Логика взаимодействия для WorksWindow.xaml
     /// </summary>
@@ -30,7 +30,7 @@ namespace LessonDB
             All_List.ClosedConnection();
             foreach (var item in result)
             {
-                ListBoxItem.AddText(result);
+                //ListBoxItem.AddText(result);
             }
 
         }
