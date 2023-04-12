@@ -70,37 +70,19 @@ namespace LessonDB
                 Eror_Text_Box(TextBoxEmail);
             }
             else
-            {
-                try 
+            {   try 
                 {
-                    //добавление логина,пароля и емейла в базу данных
-                    ApplicationContext Connect = new ApplicationContext();
-                    //Добавление таблицы в случае ее отсутствия
-                    string table = "CREATE TABLE IF NOT EXISTS Use (id INTEGER PRIMARY KEY, login TEXT, pass TEXT, email TEXT)";
-                    SQLiteCommand addTable= new SQLiteCommand(table, Connect.myConnection);
-                    Connect.OpenConnection();
-                    addTable.ExecuteNonQuery();
-                    string add = "INSERT INTO Use ('login', 'pass', 'email') VALUES (@login, @pass , @email)";
-                    SQLiteCommand myCommand = new SQLiteCommand(add, Connect.myConnection);
-                    Connect.OpenConnection();
-                    myCommand.Parameters.AddWithValue("@login",login );
-                    myCommand.Parameters.AddWithValue("@pass", pass);
-                    myCommand.Parameters.AddWithValue("@email", email);
-                    var resault = myCommand.ExecuteNonQuery();
-                    Connect.ClosedConnection();
+                    DataBaseConnect dataBase = new DataBaseConnect();
+                    dataBase.Data_Base_Input_User(login, pass, email);
+                    
                     MessageBox.Show("Вы успешно прошли регистрацию, молодец");
                 }
                 catch 
                 {
                     MessageBox.Show("Аккаует не добавлен в базу");
                 }
-
-
-                
-                
             }
             }
-
         private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
             AutoregWindow AutoWind  = new AutoregWindow();
