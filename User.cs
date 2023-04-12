@@ -6,32 +6,46 @@ using System.Threading.Tasks;
 
 namespace LessonDB
 {
-    internal class User
+    public class User
     {
-        public int id { get; set; }
-        private string login, pass, email;
-        public string Login
+        public int ID { get; set; }
+        public string Login { get; set; }
+        public string Pass { get; set; }
+        public string Email { get; set; }
+        public override string ToString()
         {
-            get { return login; }
-            set { login = value; }
-        }
-        public string Pass
-        {
-            get { return pass; }
-            set { pass = value; }
-        }
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-        public User() { }
-
-        public User(string login,string pass,string email) 
-        {
-            this.login = login;
-            this.pass = pass;
-            this.email = email;
+            return string.Format("ID: {0}, Login: {1}, Pass: {2}, Email: {3}", ID, Login, Pass, Email);
         }
     }
 }
+//namespace LessonDB
+//{
+//    internal class User
+//    {
+//        public int id { get; set; }
+//        private string login, pass, email;
+//        public string Login
+//        {
+//            get { return login; }
+//            set { login = value; }
+//        }
+//        public string Pass
+//        {
+//            get { return pass; }
+//            set { pass = value; }
+//        }
+//        public string Email
+//        {
+//            get { return email; }
+//            set { email = value; }
+//        }
+//        public User() { }
+
+//        public User(string login,string pass,string email) 
+//        {
+//            this.login = login;
+//            this.pass = pass;
+//            this.email = email;
+//        }
+//    }
+//}

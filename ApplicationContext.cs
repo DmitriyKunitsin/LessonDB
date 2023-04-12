@@ -19,9 +19,9 @@ namespace LessonDB
         {
             myConnection= new SQLiteConnection("Data Source=Use.sqlite3");
 
-            if (File.Exists("./Use.sqlite3"))
+            if (!File.Exists("./Use.sqlite3"))
             {
-                SQLiteConnection.CreateFile("./User.sqlite3");
+                SQLiteConnection.CreateFile("./Use.sqlite3");
                 Console.WriteLine("Data Base File Create");
             }
             else 

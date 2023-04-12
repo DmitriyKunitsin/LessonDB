@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using System.Data.Entity;
+using System.IO;
 
 namespace LessonDB
 {
@@ -57,25 +58,28 @@ namespace LessonDB
             }
             else
             {
-                //    User authUser = null;
-                //    using (ApplicationContext db = new ApplicationContext())
-                //    {
-                //        authUser = db.Users.Where(b => b.Login == login && b.Pass == pass).FirstOrDefault();
-                //    }
-                //        if (authUser != null)
-                //        {
-                //            MessageBox.Show("Данные ввели правильно");
-                //            WorksWindow openWorkWindow = new WorksWindow();
-                //            openWorkWindow.Show();
-                //            this.Close();
-                //        }
-                //        else
-                //        {
-                //            Eror_Text_Box(TextBoxLogin);
-                //            MessageBox.Show("Вы ввели не корректные данные");
-                //        }
+               try 
+                {
 
-                //}
+                    ApplicationContext whereAccount = new ApplicationContext();
+                    
+                    string whereAcc = ($"SELECT login,pass FROM Use WHERE login='{login}' AND pass='{pass}'");
+                    
+                    SQLiteCommand command = new SQLiteCommand(whereAcc,whereAccount.myConnection);
+                    whereAccount.OpenConnection();
+                    var result = command.ExecuteReader();
+                    whereAccount.ClosedConnection();
+
+                    WorksWindow next = new WorksWindow();
+                    next.Show();
+                    Close();
+
+
+                }
+                catch 
+                {
+                    MessageBox.Show("Аккаунт не найден");
+                }
 
             }
 

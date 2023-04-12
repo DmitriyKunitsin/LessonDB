@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Data.SQLite;
+using System.IO;
 
 namespace LessonDB
 {
+    public System.Windows.Forms.ListBox.ObjectCollection Items { get; }
     /// <summary>
     /// Логика взаимодействия для WorksWindow.xaml
     /// </summary>
@@ -22,10 +14,24 @@ namespace LessonDB
         public WorksWindow()
         {
             InitializeComponent();
+           
         }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) 
         {
+            ListBoxItem item = new ListBoxItem();
+
+            ApplicationContext All_List = new ApplicationContext();
+
+            string out_List = "SELECT * FROM Use";
+
+            SQLiteCommand command = new SQLiteCommand(out_List, All_List.myConnection);
+            All_List.OpenConnection();
+            var result = command.ExecuteReader();
+            All_List.ClosedConnection();
+            foreach (var item in result)
+            {
+                ListBoxItem.AddText(result);
+            }
 
         }
     }

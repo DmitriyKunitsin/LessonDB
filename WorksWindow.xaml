@@ -11,7 +11,7 @@
         <Border>
             <StackPanel>
                 <TextBlock Text="Рабочее окно" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0 0 0 10" />
-                <DataGrid x:Name="WorkDataWindown" Height="363" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Width="331" HorizontalAlignment="Left"/>
+                <ListBox Height="330" d:ItemsSource="{d:SampleData ItemCount=5}" Width="250" HorizontalAlignment="Left" Margin="10 0 0 0" SelectionChanged="ListBox_SelectionChanged"/>
 
 
             </StackPanel>
