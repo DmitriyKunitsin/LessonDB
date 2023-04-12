@@ -57,26 +57,19 @@ namespace LessonDB
                 Eror_Text_Box(TextBoxPassword);
             }
             else
-            {
-               try 
+            {   try
                 {
+                    DataBaseConnect baseConnect = new DataBaseConnect();
+                    baseConnect.Data_Base_Out_User(login,pass);
 
-                    ApplicationContext whereAccount = new ApplicationContext();
-                    
-                    string whereAcc = ($"SELECT login,pass FROM Use WHERE login='{login}' AND pass='{pass}'");
-                    
-                    SQLiteCommand command = new SQLiteCommand(whereAcc,whereAccount.myConnection);
-                    whereAccount.OpenConnection();
-                    var result = command.ExecuteReader();
-                    whereAccount.ClosedConnection();
-
-                    WorksWindow next = new WorksWindow();
+                    Form1 next = new Form1();
                     next.Show();
-                    Close();
-
-
+                    //Close();
+                    //WorksWindow next = new WorksWindow();
+                    //next.Show();
+                    //Close();
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Аккаунт не найден");
                 }

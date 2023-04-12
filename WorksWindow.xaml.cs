@@ -28,10 +28,10 @@ namespace LessonDB
             All_List.OpenConnection();
             var result = command.ExecuteReader();
             All_List.ClosedConnection();
-            foreach (var item in result)
-            {
-                //ListBoxItem.AddText(result);
-            }
+            //foreach (var item in result)
+            //{
+            //    ListBoxItem.(result);
+            //}
 
         }
     }
