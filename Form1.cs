@@ -84,6 +84,6 @@ namespace LessonDB
                     context.ClosedConnection();
                 }
             }
-        }   
+        }
     }
 }

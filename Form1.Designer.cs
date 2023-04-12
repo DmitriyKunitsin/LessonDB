@@ -31,10 +31,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button2 = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,18 +80,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Info;
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(3, 408);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(421, 39);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Показать данные пользователей";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Login";
@@ -103,6 +91,18 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Email";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Info;
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Location = new System.Drawing.Point(3, 408);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(421, 39);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Показать данные пользователей";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
