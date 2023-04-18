@@ -28,7 +28,6 @@ namespace LessonDB
             InitializeComponent();
             
             db = new ApplicationContext();
-
           
         }
         private void Eror_Text_Box(Control Text)
@@ -90,5 +89,6 @@ namespace LessonDB
             this.Hide();
         }
     }
+    
     }
 

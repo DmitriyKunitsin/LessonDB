@@ -63,12 +63,12 @@ namespace LessonDB
                     DataBaseConnect baseConnect = new DataBaseConnect();
                     baseConnect.Data_Base_Out_User(login,pass);
 
-                    Form1 next = new Form1();
-                    next.Show();
-                    //Close();
-                    //WorksWindow next = new WorksWindow();
+                    //Form1 next = new Form1();
                     //next.Show();
                     //Close();
+                    WorksWindow next = new WorksWindow();
+                    next.Show();
+                    Close();
                 }
                 catch
                 {
