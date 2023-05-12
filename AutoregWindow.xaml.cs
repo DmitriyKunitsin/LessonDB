@@ -65,10 +65,6 @@ namespace LessonDB
 
                     Form1 next = new Form1();
                     next.Show();
-                    //Close();
-                    //WorksWindow next = new WorksWindow();
-                    //next.Show();
-                    //Close();
                 }
                 catch
                 {

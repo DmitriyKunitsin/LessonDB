@@ -31,27 +31,6 @@ namespace LessonDB
             All_List.ClosedConnection();
 
         }
-
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            //ApplicationContext context = new ApplicationContext();
-
-            //string command = "SELECT login FROM Use";
-            //string command = "SELECT login,pass,email FROM Use";
-            //SQLiteCommand sqlCommand = new SQLiteCommand(command, context.myConnection);
-            //context.OpenConnection();
-            //dataReader = sqlCommand.ExecuteReader();
-
-            //System.Windows.Forms.ListViewItem item = null;
-            //while (dataReader.Read())
-            //{
-            //    item = new System.Windows.Forms.ListViewItem(new string[] { Convert.ToString(dataReader["login"]),
-            //        Convert.ToString(dataReader["pass"]),Convert.ToString(dataReader["email"])});
-
-            //    listView1.Items.Add(item);
-            //}
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -73,7 +52,7 @@ namespace LessonDB
                 while (dataReader.Read())
                 {
                     
-                    item = new ListView(new string[] { Convert.ToString(dataReader["login"]) });
+                    //item = new ListView(new string[] { Convert.ToString(dataReader["login"]) });
 
 
                 }
