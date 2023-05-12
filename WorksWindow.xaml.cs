@@ -54,7 +54,6 @@ namespace LessonDB
                     
                     //item = new ListView(new string[] { Convert.ToString(dataReader["login"]) });
 
-
                 }
             }
             catch (Exception ex)
