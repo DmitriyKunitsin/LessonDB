@@ -25,6 +25,7 @@ namespace LessonDB
         public AutoregWindow()
         {
             InitializeComponent();
+
         }
 
         private void Eror_Text_Box(Control Text)
