@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LessonDB
 {
-    public  class DataBaseConnect
+    public class DataBaseConnect
     {
-        public void Data_Base_Out_User(string login, string pass)
+        public bool Data_Base_Out_User(string login, string pass)
         {
             ApplicationContext whereAccount = new ApplicationContext();
 
@@ -18,11 +18,12 @@ namespace LessonDB
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
             var result = command.ExecuteReader();
+            var userExist = result.HasRows;
             whereAccount.ClosedConnection();
-
-           //WorksWindow next = new WorksWindow();
+            return userExist;
+            //WorksWindow next = new WorksWindow();
         }
-        public void Data_Base_Input_User(string login, string pass, string email) 
+        public void Data_Base_Input_User(string login, string pass, string email)
         {
             //добавление логина,пароля и емейла в базу данных
             ApplicationContext Connect = new ApplicationContext();
@@ -52,6 +53,31 @@ namespace LessonDB
             whereAccount.ClosedConnection();
 
             //WorksWindow next = new WorksWindow();
+        }
+        public static User Data_Set_Acc_Users(string textBox)
+        {
+            User DBUser = new User("null", "null", "null");
+
+            SQLiteDataReader dataReader = null;
+
+            ApplicationContext context = new ApplicationContext();
+
+            string command = $"SELECT login,pass,email FROM Use WHERE login ='{textBox}'";
+
+            SQLiteCommand sQLiteCommand = new SQLiteCommand(command, context.myConnection);
+            context.OpenConnection();
+            dataReader = sQLiteCommand.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                DBUser.Login = Convert.ToString(dataReader.GetString(0));
+                DBUser.Pass = Convert.ToString(dataReader.GetString(1));
+                DBUser.Email = Convert.ToString(dataReader.GetString(2));
+
+            }
+
+            return DBUser;
+
         }
     }
 }

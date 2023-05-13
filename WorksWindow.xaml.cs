@@ -33,21 +33,13 @@ namespace LessonDB
         {
             var textBox = Main_text.Text;
             SQLiteDataReader dataReader = null;
-
             ApplicationContext context = new ApplicationContext();
             try
-            {   string command = $"SELECT login,pass,email FROM Use WHERE login ='{textBox}'";
-
-                SQLiteCommand sQLiteCommand = new SQLiteCommand(command, context.myConnection);
-                context.OpenConnection();
-                dataReader = sQLiteCommand.ExecuteReader();
-
-                while (dataReader.Read())
+            {
+                listUsers.Items.Clear();
+                User user = DataBaseConnect.Data_Set_Acc_Users(textBox);
+                if (user.Login != "null")
                 {
-                    object login = dataReader.GetString(0);
-                    object pass = dataReader.GetString(1);
-                    object email = dataReader.GetString(2);
-                    User user = new User(Convert.ToString(login), Convert.ToString(pass), Convert.ToString(email));
                     listUsers.Items.Add(user);
                 }
             }
