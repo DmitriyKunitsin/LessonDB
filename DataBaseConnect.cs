@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace LessonDB
 {
@@ -98,7 +101,7 @@ namespace LessonDB
         {
             SQLiteDataReader reader = null;
             ApplicationContext context = new ApplicationContext();
-            string user = $"SELECT login,password,email,roleID FROM Users WHERE login ='{login}';";
+            string user = $"SELECT login,password,email,roleID,id FROM Users WHERE login ='{login}';";
             SQLiteCommand sQLiteCommand = new SQLiteCommand(user, context.myConnection);
             context.OpenConnection();
             reader = sQLiteCommand.ExecuteReader();
@@ -109,8 +112,37 @@ namespace LessonDB
                 userLogin.Pass = reader.GetString(1);
                 userLogin.Email = reader.GetString(2);
                 userLogin.RoleID = Convert.ToString(reader.GetInt32(3));
+                userLogin.id = reader.GetInt32(4);
             }
              return userLogin;
         }
-     }
+        public void Data_Info_Test(string nameTest,string nameGroup,string dicriptTest, int id)
+        {
+            //добавление названия теста,группы и описания теста в базу данных
+            ApplicationContext Connect = new ApplicationContext();
+            string add = "INSERT INTO Tests ('name', 'group', 'description','creatorID') VALUES (@name, @group , @description,@creatorID)";
+            SQLiteCommand myCommand = new SQLiteCommand(add, Connect.myConnection);
+            Connect.OpenConnection();
+            myCommand.Parameters.AddWithValue("@name", nameTest);
+            myCommand.Parameters.AddWithValue("@group", nameGroup);
+            myCommand.Parameters.AddWithValue("@description", dicriptTest);
+            myCommand.Parameters.AddWithValue("@creatorID", id);
+            var resault = myCommand.ExecuteNonQuery();
+            Connect.ClosedConnection();
+        }
+        public bool Data_login_User_Unique(string login)
+        {
+            SQLiteDataReader dataReader = null;
+            ApplicationContext context = new ApplicationContext();
+            string command = $"SELECT login FROM Users WHERE login = '{login}';";
+            SQLiteCommand comm = new SQLiteCommand(command, context.myConnection);
+            context.OpenConnection();
+            var result = comm.ExecuteReader();
+            var userExist = result.HasRows;
+            context.ClosedConnection();
+            return userExist;
+
+
+        }
+    }
 }

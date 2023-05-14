@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Data.Entity;
 
 namespace LessonDB
 {
@@ -73,15 +74,22 @@ namespace LessonDB
             {
                 try
                 {
-                    SHA256 hash = SHA256.Create();
-                    var hashedPass = (SHA256.Create()
-                    .ComputeHash(Encoding.UTF8.GetBytes(pass))
-                    .Select(item => item.ToString("x2")))
-                    .Aggregate("",(current, next) => current + next);
-                    DataBaseConnect dataBase = new DataBaseConnect();
-                    dataBase.Data_Base_Input_User(login, hashedPass.ToString(), email);
+                        SHA256 hash = SHA256.Create();
+                        var hashedPass = (SHA256.Create()
+                        .ComputeHash(Encoding.UTF8.GetBytes(pass))
+                        .Select(item => item.ToString("x2")))
+                        .Aggregate("", (current, next) => current + next);
+                        DataBaseConnect dataBase = new DataBaseConnect();
+                        if (dataBase.Data_login_User_Unique(login) != true)
+                        {
+                            dataBase.Data_Base_Input_User(login, hashedPass.ToString(), email);
 
-                    MessageBox.Show("Вы успешно прошли регистрацию, молодец");
+                            MessageBox.Show("Вы успешно прошли регистрацию, молодец");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Данный логин существует");
+                        }
                 }
                 catch
                 {

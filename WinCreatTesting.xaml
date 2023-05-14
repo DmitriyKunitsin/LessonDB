@@ -5,6 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LessonDB"
         mc:Ignorable="d"
-        Title="WinCreatTesting" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid/>
+        Title="WinCreatTesting" Height="650" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>    
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" x:Name="nameTesting"  HorizontalAlignment="Center"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="400" />
+        <Label Grid.Row="0" Content="Введите название теста" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
+        <TextBox Grid.Row="1" x:Name="nameGruping" HorizontalAlignment="Center"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="400" />
+        <Label Grid.Row="1" Content="Введите группу" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox Grid.Row="2" x:Name="dicriptTesting" HorizontalAlignment="Center"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="400"  />
+        <Label Grid.Row="2" Content="Описание теста" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
+        <Button Grid.Row="3" Content="Продолжить" Click="Button_Click"/>
+    </Grid>
 </Window>

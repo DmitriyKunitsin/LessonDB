@@ -23,5 +23,15 @@ namespace LessonDB
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string nameTest = nameTesting.Text;
+            string nameGroup = nameGruping.Text;
+            string dicriptTest = dicriptTesting.Text;
+            DataBaseConnect dataBaseConnect = new DataBaseConnect();
+            dataBaseConnect.Data_Info_Test(nameTest, nameGroup, dicriptTest, ApplicationContext.ActualUser.id);
+            
+        }
     }
 }
