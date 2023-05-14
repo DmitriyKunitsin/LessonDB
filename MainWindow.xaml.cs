@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace LessonDB
 {
@@ -26,16 +27,16 @@ namespace LessonDB
         public MainWindow()
         {
             InitializeComponent();
-            
+
             db = new ApplicationContext();
-          
+
         }
         private void Eror_Text_Box(Control Text)
         {
-                Text.ToolTip = "Запись должна состоять из более чем 4 символа";
-                Text.Background = Brushes.Red;
+            Text.ToolTip = "Запись должна состоять из более чем 4 символа";
+            Text.Background = Brushes.Red;
         }
-        private void Clear_Box(string Text, string pass , string email,Control Input) 
+        private void Clear_Box(string Text, string pass, string email, Control Input)
         {
             if (Text.Length > 4 || pass.Length > 4 || email.Length > 4)
             {
@@ -49,16 +50,16 @@ namespace LessonDB
             string pass = TextBoxPassword.Password.Trim();
             string pass_2 = TextBoxPassword_2.Password.Trim();
             string email = TextBoxEmail.Text.ToLower().Trim();
-            Clear_Box(login,pass,email,TextBoxLogin);
+            Clear_Box(login, pass, email, TextBoxLogin);
             Clear_Box(login, pass, email, TextBoxPassword);
             Clear_Box(login, pass, email, TextBoxEmail);
             if (login.Length < 4)
             {
-               Eror_Text_Box(TextBoxLogin);
+                Eror_Text_Box(TextBoxLogin);
             }
             else if (pass.Length < 4)
             {
-               Eror_Text_Box(TextBoxPassword);
+                Eror_Text_Box(TextBoxPassword);
             }
             else if (pass != pass_2)
             {
@@ -69,26 +70,32 @@ namespace LessonDB
                 Eror_Text_Box(TextBoxEmail);
             }
             else
-            {   try 
+            {
+                try
                 {
+                    SHA256 hash = SHA256.Create();
+                    var hashedPass = (SHA256.Create()
+                    .ComputeHash(Encoding.UTF8.GetBytes(pass))
+                    .Select(item => item.ToString("x2")))
+                    .Aggregate("",(current, next) => current + next);
                     DataBaseConnect dataBase = new DataBaseConnect();
-                    dataBase.Data_Base_Input_User(login, pass, email);
-                    
+                    dataBase.Data_Base_Input_User(login, hashedPass.ToString(), email);
+
                     MessageBox.Show("Вы успешно прошли регистрацию, молодец");
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Аккаует не добавлен в базу");
                 }
             }
-            }
+        }
         private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
-            AutoregWindow AutoWind  = new AutoregWindow();
+            AutoregWindow AutoWind = new AutoregWindow();
             AutoWind.Show();
             this.Hide();
         }
     }
-    
-    }
+
+}
 

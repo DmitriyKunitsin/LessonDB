@@ -56,5 +56,19 @@ namespace LessonDB
                 }
             }
         }
+
+        private void Button_Click_Open_Win(object sender, RoutedEventArgs e)
+        {
+            var user = ApplicationContext.ActualUser.Login;
+
+
+            DataBaseConnect dataBase = new DataBaseConnect();
+            if (dataBase.Data_roleID_User(Convert.ToString(user)) == true)
+            {
+                WinCreatTesting winCreat = new WinCreatTesting();
+                winCreat.Show();
+                Close();
+            }
+        }
     }
 }

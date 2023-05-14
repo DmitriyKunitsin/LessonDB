@@ -25,7 +25,7 @@ namespace LessonDB
     public class User
     {
         public int id { get;  }
-        private string login, pass, email;
+        private string login, pass, email, roleID;
         public string Login
         {
             get { return login; }
@@ -41,12 +41,24 @@ namespace LessonDB
             get { return email; }
             set { email = value; }
         }
-
+        public string RoleID
+        {
+            get { return roleID; }
+            set { roleID = value; }
+        }
+        public User()
+        {
+            this.login = string.Empty;
+            this.pass = string.Empty;
+            this.email = string.Empty;
+            this.roleID = string.Empty;
+        }
         public User(string login, string pass, string email)
         {
             this.login = login;
             this.pass = pass;
             this.email = email;
+            this.roleID = string.Empty;
         }
     }
 }

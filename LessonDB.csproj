@@ -112,6 +112,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="WinCreatTesting.xaml.cs">
+      <DependentUpon>WinCreatTesting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorksWindow.xaml.cs">
       <DependentUpon>WorksWindow.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WinCreatTesting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WorksWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

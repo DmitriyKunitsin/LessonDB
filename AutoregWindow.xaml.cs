@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Data.SQLite;
 using System.Data.Entity;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace LessonDB
 {
@@ -60,12 +61,20 @@ namespace LessonDB
 
             {   try
                 {
+                    SHA256 hash = SHA256.Create();
+                    var hashedPass = (SHA256.Create()
+                    .ComputeHash(Encoding.UTF8.GetBytes(pass))
+                    .Select(item => item.ToString("x2")))
+                    .Aggregate("", (current, next) => current + next);
                     DataBaseConnect baseConnect = new DataBaseConnect();
-                    if (baseConnect.Data_Base_Out_User(login,pass))
+                    if (baseConnect.Data_Base_Out_User(login,hashedPass.ToString()))
                     {
+                        
+                        ApplicationContext.ActualUser = baseConnect.FetchUser(login);
                         WorksWindow next = new WorksWindow();
                         next.Show();
                         Close();
+                        
                     }
                     else
                     {

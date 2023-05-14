@@ -15,6 +15,7 @@ namespace LessonDB
     {
         public SQLiteConnection myConnection;
         
+        public static User ActualUser = new User(); 
         public ApplicationContext() 
         {
             myConnection= new SQLiteConnection("Data Source=Use.sqlite3");

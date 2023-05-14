@@ -13,7 +13,7 @@ namespace LessonDB
         {
             ApplicationContext whereAccount = new ApplicationContext();
 
-            string whereAcc = ($"SELECT login,pass FROM Use WHERE login='{login}' AND pass='{pass}'");
+            string whereAcc = ($"SELECT login,password FROM Users WHERE login='{login}' AND password='{pass}'");
 
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
@@ -28,15 +28,15 @@ namespace LessonDB
             //добавление логина,пароля и емейла в базу данных
             ApplicationContext Connect = new ApplicationContext();
             //Добавление таблицы в случае ее отсутствия
-            string table = "CREATE TABLE IF NOT EXISTS Use (id INTEGER PRIMARY KEY, login TEXT, pass TEXT, email TEXT)";
+            string table = "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY, login TEXT, password TEXT, email TEXT)";
             SQLiteCommand addTable = new SQLiteCommand(table, Connect.myConnection);
             Connect.OpenConnection();
             addTable.ExecuteNonQuery();
-            string add = "INSERT INTO Use ('login', 'pass', 'email') VALUES (@login, @pass , @email)";
+            string add = "INSERT INTO Users ('login', 'password', 'email') VALUES (@login, @password , @email)";
             SQLiteCommand myCommand = new SQLiteCommand(add, Connect.myConnection);
             Connect.OpenConnection();
             myCommand.Parameters.AddWithValue("@login", login);
-            myCommand.Parameters.AddWithValue("@pass", pass);
+            myCommand.Parameters.AddWithValue("@password", pass);
             myCommand.Parameters.AddWithValue("@email", email);
             var resault = myCommand.ExecuteNonQuery();
             Connect.ClosedConnection();
@@ -45,7 +45,7 @@ namespace LessonDB
         {
             ApplicationContext whereAccount = new ApplicationContext();
 
-            string whereAcc = ($"SELECT * FROM Use");
+            string whereAcc = ($"SELECT * FROM Users");
 
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
@@ -62,7 +62,7 @@ namespace LessonDB
 
             ApplicationContext context = new ApplicationContext();
 
-            string command = $"SELECT login,pass,email FROM Use WHERE login ='{textBox}'";
+            string command = $"SELECT login,password,email FROM Users WHERE login ='{textBox}'";
 
             SQLiteCommand sQLiteCommand = new SQLiteCommand(command, context.myConnection);
             context.OpenConnection();
@@ -79,5 +79,38 @@ namespace LessonDB
             return DBUser;
 
         }
-    }
+        public bool Data_roleID_User(string login)
+        {
+            SQLiteDataReader dataReader = null;
+            ApplicationContext context = new ApplicationContext();
+            string command = $"SELECT roleID FROM Users WHERE login = '{login}' AND roleID !=3;";
+            SQLiteCommand comm = new SQLiteCommand(command, context.myConnection);
+            context.OpenConnection();
+            var result = comm.ExecuteReader();
+            var userExist = result.HasRows;
+            context.ClosedConnection();
+            return userExist;
+
+
+        }
+
+        internal User FetchUser(string login)
+        {
+            SQLiteDataReader reader = null;
+            ApplicationContext context = new ApplicationContext();
+            string user = $"SELECT login,password,email,roleID FROM Users WHERE login ='{login}';";
+            SQLiteCommand sQLiteCommand = new SQLiteCommand(user, context.myConnection);
+            context.OpenConnection();
+            reader = sQLiteCommand.ExecuteReader();
+            User userLogin = new User();
+             while (reader.Read())
+            {
+                userLogin.Login = reader.GetString(0);
+                userLogin.Pass = reader.GetString(1);
+                userLogin.Email = reader.GetString(2);
+                userLogin.RoleID = Convert.ToString(reader.GetInt32(3));
+            }
+             return userLogin;
+        }
+     }
 }
