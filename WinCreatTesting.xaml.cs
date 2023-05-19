@@ -31,6 +31,9 @@ namespace LessonDB
             string dicriptTest = dicriptTesting.Text;
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
             dataBaseConnect.Data_Info_Test(nameTest, nameGroup, dicriptTest, ApplicationContext.ActualUser.id);
+            CreatWindow creatWindow = new CreatWindow();
+            creatWindow.Show();
+            Close();
             
         }
     }

@@ -104,6 +104,9 @@
     <Compile Include="AutoregWindow.xaml.cs">
       <DependentUpon>AutoregWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreatWindow.xaml.cs">
+      <DependentUpon>CreatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataBaseConnect.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -119,6 +122,10 @@
       <DependentUpon>WorksWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AutoregWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

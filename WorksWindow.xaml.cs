@@ -66,9 +66,21 @@ namespace LessonDB
             if (dataBase.Data_roleID_User(Convert.ToString(user)) == true)
             {
                 WinCreatTesting winCreat = new WinCreatTesting();
+
                 winCreat.Show();
                 Close();
             }
+            else
+            {
+                MessageBox.Show("У вас не достаточно прав для создания теста");
+            }
+        }
+
+        private void Button_Click_Auto_Win(object sender, RoutedEventArgs e)
+        {
+            AutoregWindow autoregWindow = new AutoregWindow();
+            autoregWindow.Show();
+            Close();
         }
     }
 }
