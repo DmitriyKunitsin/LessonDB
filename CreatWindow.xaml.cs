@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,8 @@ namespace LessonDB
         public CreatWindow()
         {
             InitializeComponent();
-            var user = ApplicationContext.ActualUser.Login;
-            var userGr = ApplicationContext.ActualUser.Email;
-            textTestName.Text = user;
-            textGroup.Text = userGr;
+            
+            
         }
     }
 }

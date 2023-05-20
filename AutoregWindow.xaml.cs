@@ -27,7 +27,6 @@ namespace LessonDB
         {
             InitializeComponent();
         }
-
         private void Eror_Text_Box(Control Text)
         {
             Text.ToolTip = "Запись должна состоять из более чем 4 символа";
@@ -41,7 +40,6 @@ namespace LessonDB
                 Input.ToolTip = "";
             }
         }
-
         private void Button_Auto_Click(object sender, RoutedEventArgs e)
         {
             string login = TextBoxLogin.Text.Trim();
@@ -58,8 +56,8 @@ namespace LessonDB
                 Eror_Text_Box(TextBoxPassword);
             }
             else
-
-            {   try
+            {
+                try
                 {
                     SHA256 hash = SHA256.Create();
                     var hashedPass = (SHA256.Create()
@@ -67,34 +65,23 @@ namespace LessonDB
                     .Select(item => item.ToString("x2")))
                     .Aggregate("", (current, next) => current + next);
                     DataBaseConnect baseConnect = new DataBaseConnect();
-                    if (baseConnect.Data_Base_Out_User(login,hashedPass.ToString()))
+                    if (baseConnect.Data_Base_Out_User(login, hashedPass.ToString()))
                     {
-                        
                         ApplicationContext.ActualUser = baseConnect.FetchUser(login);
                         WorksWindow next = new WorksWindow();
                         next.Show();
                         Close();
-                        
                     }
                     else
                     {
                         MessageBox.Show("Аккаунт не найден");
                     }
-                    //Form1 next = new Form1();
-                    //next.Show();
-                    //Close();
-                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-
             }
-
-
-
-
         }
         private void Button_Back_Reg_Click(object sender, RoutedEventArgs e)
         {

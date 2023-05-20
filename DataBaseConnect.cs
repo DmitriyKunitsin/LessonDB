@@ -44,19 +44,6 @@ namespace LessonDB
             var resault = myCommand.ExecuteNonQuery();
             Connect.ClosedConnection();
         }
-        public void Data_Base_Out_All_User(string login, string pass)
-        {
-            ApplicationContext whereAccount = new ApplicationContext();
-
-            string whereAcc = ($"SELECT * FROM Users");
-
-            SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
-            whereAccount.OpenConnection();
-            var result = command.ExecuteReader();
-            whereAccount.ClosedConnection();
-
-            //WorksWindow next = new WorksWindow();
-        }
         public static User Data_Set_Acc_Users(string textBox)
         {
             User DBUser = new User("null", "null", "null");
@@ -142,6 +129,10 @@ namespace LessonDB
             context.ClosedConnection();
             return userExist;
 
+
+        }
+        public void Data_Search_Last_id()
+        {
 
         }
     }
